@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mhys.mapper.StudentMapper">
+    <select id="selectAll" parameterType="com.mhys.model.Student" resultType="com.mhys.model.Student">
+        select * from  stu
+    </select>
+    <select id="selectByName" parameterType="com.mhys.model.Student" resultType="com.mhys.model.Student">
+        select * from  stu where 1=1
+        <if test="#{name!=null and name!=''}">
+            and  name  like '%${name}'
+        </if>
+    </select>
+    <delete id="del" parameterType="java.lang.Integer">
+        delete from  stu where id=#{id}
+    </delete>
+    <insert id="insert" parameterType="com.mhys.model.Student">
+        insert stu(name,sex,time) values (#{name},#{sex},#{time})
+    </insert>
+
+    <select id="selectById" parameterType="com.mhys.model.Student" resultType="com.mhys.model.Student">
+        select id,name,sex,time from stu where id=#{id}
+    </select>
+    <update id="update" parameterType="com.mhys.model.Student">
+        update stu set name=#{name},sex=#{sex},time=#{time} where id=#{id}
+    </update>
+</mapper>
